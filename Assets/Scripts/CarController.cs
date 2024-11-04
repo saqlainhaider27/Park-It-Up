@@ -40,7 +40,7 @@ public class CarController : MonoBehaviour, ICar {
 
 
     private void Update() {
-        Vector2 _inputVector = InputManager.Instance.GetInputVectorNormalized();
+        Vector2 _inputVector = InputManager.Instance.GetInputVector();
         Vector3 _moveDirection = new Vector3(_inputVector.x, 0f, _inputVector.y);
         if (_moveDirection == Vector3.zero) {
             return;
@@ -51,15 +51,19 @@ public class CarController : MonoBehaviour, ICar {
     public void Move(Vector3 _direction) {
         if (_direction.z > 0f) {
             // Moving forward
-
+            _rigidbody.AddForce(_direction * Speed * Time.deltaTime);
         }
         else if (_direction.z < 0f) {
             // Reverse
+            _rigidbody.AddForce(_direction * Speed * Time.deltaTime);
 
-        
         }
-        _rigidbody.AddForce(_direction * Speed * Time.deltaTime);
-
+        else if (_direction.x > 0f) {
+            // Turning right
+        }
+        else if (_direction.x < 0f) {
+            // Turning left
+        }
         
     }
 }

@@ -9,8 +9,8 @@ public class InputManager : Singleton<InputManager> {
     }
 
     
-    public Vector2 GetInputVectorNormalized() {
-        return inputActions.Player.Move.ReadValue<Vector2>().normalized;
+    public Vector2 GetInputVector() {
+        return inputActions.Player.Move.ReadValue<Vector2>();
     }
     private void OnEnable() {
         inputActions.Enable();
