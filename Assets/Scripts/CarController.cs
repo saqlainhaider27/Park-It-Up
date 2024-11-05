@@ -1,69 +1,77 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Rigidbody))]
-public class CarController : MonoBehaviour, ICar {
-    #region Fields
+public class CarController : MonoBehaviour {
 
-    [SerializeField] private float _speed;
-    [SerializeField] private float _acceleration; 
-
-    private Rigidbody _rigidbody;
-
-    #endregion
-    #region Properties
-
-    public float Speed {
-        get {
-            return _speed;
-        }
-        private set {
-            _speed = value;
-        }
+    [Header("Car Settings")]
+    [field: SerializeField]
+    public float MaxSpeed {
+        get; private set;
     }
-
+    [field: SerializeField]
     public float Acceleration {
-        get {
-            return _acceleration;
-        }
-        private set {
-            _acceleration = value;
-        }
+        get; private set;
+    }
+    [field: SerializeField]
+    public float Deceleration {
+        get; private set;
     }
 
-    #endregion
+    [System.Serializable]
+    public class Wheel {
+        public Transform _tireTransform;
+        public WheelCollider _wheelCollider;
+        public Axel _axel;
+    }
+    [SerializeField] private List<Wheel> _carWheels = new List<Wheel>();
 
-    private void Awake() {
-        _rigidbody = GetComponent<Rigidbody>();
+    public enum Axel {
+        Front,
+        Rear
     }
 
+    [Header("Suspension Settings")]
+    [SerializeField] private float _springUnstrechLength;
+    [SerializeField] private float _suspensionRestDistance;
 
+    [Header("References")]
+    [SerializeField] private LayerMask _drivable;
+    private Rigidbody _carRB;
+
+    private void Start() {
+        _carRB = GetComponent<Rigidbody>();
+    }
     private void Update() {
-        Vector2 _inputVector = InputManager.Instance.GetInputVector();
-        Vector3 _moveDirection = new Vector3(_inputVector.x, 0f, _inputVector.y);
-        if (_moveDirection == Vector3.zero) {
-            return;
-        }
-        Move(_moveDirection);
-    }
-
-    public void Move(Vector3 _direction) {
-        if (_direction.z > 0f) {
-            // Moving forward
-            _rigidbody.AddForce(_direction * Speed * Time.deltaTime);
-        }
-        else if (_direction.z < 0f) {
-            // Reverse
-            _rigidbody.AddForce(_direction * Speed * Time.deltaTime);
-
-        }
-        else if (_direction.x > 0f) {
-            // Turning right
-        }
-        else if (_direction.x < 0f) {
-            // Turning left
-        }
         
     }
+
+    private void FixedUpdate() {
+        // Suspension function in FixedUpdate as it hits a raycast from each wheel
+        Suspension();
+    }
+    private void Suspension() {
+        foreach (Wheel wheel in _carWheels) {
+            // Perform raycast from wheel center
+            Ray _wheelRay = new Ray(wheel._tireTransform.position, -transform.up);
+            bool rayDidHit = Physics.Raycast(_wheelRay, _springUnstrechLength, _drivable);
+            if (rayDidHit) {
+                Vector3 _springDir = wheel._tireTransform.up;
+
+                Vector3 _wheelWorldVelocity = _carRB.GetPointVelocity(wheel._tireTransform.position);
+
+                float velocity = Vector3.Dot(_springDir, _wheelWorldVelocity);
+            }
+        }
+
+
+    }
+
+
+    private void Move(Vector3 _direction) {
+
+    }
+
+
+
 }
