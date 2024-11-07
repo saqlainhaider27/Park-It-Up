@@ -51,19 +51,6 @@ public class CarController : MonoBehaviour {
         Suspension();
     }
     private void Suspension() {
-        foreach (Wheel wheel in _carWheels) {
-            // Perform raycast from wheel center
-            Ray _wheelRay = new Ray(wheel._tireTransform.position, -transform.up);
-            bool rayDidHit = Physics.Raycast(_wheelRay, _springUnstrechLength, _drivable);
-            if (rayDidHit) {
-                Vector3 _springDir = wheel._tireTransform.up;
-
-                Vector3 _wheelWorldVelocity = _carRB.GetPointVelocity(wheel._tireTransform.position);
-
-                float velocity = Vector3.Dot(_springDir, _wheelWorldVelocity);
-            }
-        }
-
 
     }
 
