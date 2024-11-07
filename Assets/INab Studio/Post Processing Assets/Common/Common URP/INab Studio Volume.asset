@@ -108,7 +108,6 @@ MonoBehaviour:
   components:
   - {fileID: 93331686143579462}
   - {fileID: -3370322693678147131}
-  - {fileID: 6720872506646919431}
   - {fileID: -21310526817526636}
   - {fileID: -71053771295941187}
 --- !u!114 &93331686143579462
@@ -141,7 +140,7 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.55344284, b: 0, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 1
     m_Value: 1
