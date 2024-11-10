@@ -157,9 +157,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1022843523982172369, guid: 2832abaf3688e874bb54dd2ab70d07a0, type: 3}
+      propertyPath: <CarAISO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 6dba981e081fcb04a8278b0cc5965cef, type: 2}
     - target: {fileID: 8056895952138251039, guid: 2832abaf3688e874bb54dd2ab70d07a0, type: 3}
       propertyPath: m_Name
-      value: BaseCar Variant
+      value: Blue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
