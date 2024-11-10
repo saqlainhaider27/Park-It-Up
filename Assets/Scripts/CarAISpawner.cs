@@ -18,6 +18,10 @@ public class CarAISpawner : MonoBehaviour {
         spawnCooldown -= Time.deltaTime;
 
         // If cooldown reaches 0, spawn a new car and reset the cooldown
+        // Don't Spawn any cars if drop point occupued
+        if (CarAIController.Instance.GetIsDropPointOccupied()) {
+            return;
+        }
         if (spawnCooldown <= 0f) {
             int randomCarIndex = UnityEngine.Random.Range(0, _carAIList.Count);
             CarAI _carToGenerate = _carAIList[randomCarIndex];
