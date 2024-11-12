@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 864403471867640845}
   - component: {fileID: 1128242663425186080}
   - component: {fileID: 8770722916777328041}
-  - component: {fileID: 5193593985369208077}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -88,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5193593985369208077
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8915418280583728754}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.69, y: 1.15, z: 4.1}
-  m_Center: {x: -0.004298985, y: 0.74, z: 0.0057911873}
 --- !u!1001 &4218134884287082265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8056895952138251039, guid: 2832abaf3688e874bb54dd2ab70d07a0, type: 3}
       propertyPath: m_Name
-      value: _BaseCar Variant
+      value: DarkGreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

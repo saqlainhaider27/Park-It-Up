@@ -8,6 +8,7 @@ public class InputManager : Singleton<InputManager> {
     public event EventHandler OnSprintKeyHold;
     public event EventHandler OnSprintKeyReleased;
 
+    public event EventHandler OnInteractKeyPressed;
     private void Awake() {
         inputActions = new InputSystem_Actions();
     }
@@ -15,6 +16,12 @@ public class InputManager : Singleton<InputManager> {
     private void Start() {
         inputActions.Player.Sprint.performed += Sprint_performed;
         inputActions.Player.Sprint.canceled += Sprint_canceled;
+        inputActions.Player.Interact.performed += Interact_performed;
+    }
+
+    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        Debug.Log("Interaction KeyPressed");
+        OnInteractKeyPressed?.Invoke(this,EventArgs.Empty);
     }
 
     private void Sprint_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj) {

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 358872116508512598}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CarMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,6 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5769772353689720575}
+  - {fileID: 1571898158249833128}
   m_Father: {fileID: 456711136825715180}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1380337854633620531
@@ -41,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5653493696856114866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +79,7 @@ GameObject:
   - component: {fileID: 5687729078386629907}
   - component: {fileID: 4092039271350965386}
   - component: {fileID: 6917496494486806784}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_FrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5769772353689720575}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2177624328768600220}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Meshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +235,7 @@ GameObject:
   - component: {fileID: 3306912058256433550}
   - component: {fileID: 7758962569858097810}
   - component: {fileID: 3461909295626527607}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_RearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,6 +310,93 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4335642731065539694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 950119801164829244}
+  - component: {fileID: 7207574974270273508}
+  - component: {fileID: 1681639579537829664}
+  m_Layer: 7
+  m_Name: SelectedBodyVisual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &950119801164829244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335642731065539694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000014106499, y: -0.00000007549789, z: 1.0482855e-14, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.04}
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1571898158249833128}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7207574974270273508
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335642731065539694}
+  m_Mesh: {fileID: 2959467708922500008, guid: 2418224a8a26ed74886d07c8b898f606, type: 3}
+--- !u!23 &1681639579537829664
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335642731065539694}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b2eb985d3d5fb904d86a1c0ccdbaae77, type: 2}
+  - {fileID: 2100000, guid: b2eb985d3d5fb904d86a1c0ccdbaae77, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4511183533739295768
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +408,7 @@ GameObject:
   - component: {fileID: 7877670375660559027}
   - component: {fileID: 7431594920922248012}
   - component: {fileID: 2690824819913372913}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_RearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,6 +483,52 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4931203635538841854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1571898158249833128}
+  - component: {fileID: 2102102364323821907}
+  m_Layer: 7
+  m_Name: SelectedBody
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1571898158249833128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931203635538841854}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 950119801164829244}
+  m_Father: {fileID: 358872116508512598}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2102102364323821907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931203635538841854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385ce5213f087fd44b297cc44094bd30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carBody: {fileID: 4335642731065539694}
 --- !u!1 &6185356336361471995
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 355476988437462563}
   - component: {fileID: 7381410793701201808}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_FrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2601702232258625185}
   - component: {fileID: 2396902277478912490}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_RearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4344942755522870651}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CustomerSpawnLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,7 +715,8 @@ GameObject:
   - component: {fileID: 7931519026846046191}
   - component: {fileID: 1022843523982172369}
   - component: {fileID: 4341688599660793034}
-  m_Layer: 0
+  - component: {fileID: 584968176290028714}
+  m_Layer: 7
   m_Name: _BaseCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,6 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c900d7efdcd0348babdd8fbac86bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selectedCarBody: {fileID: 2102102364323821907}
   <CarAISO>k__BackingField: {fileID: 0}
 --- !u!195 &4341688599660793034
 NavMeshAgent:
@@ -715,6 +851,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &584968176290028714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056895952138251039}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.69, y: 1.15, z: 4.1}
+  m_Center: {x: -0.004298985, y: 0.74, z: 0.0057911873}
 --- !u!1 &8267371932711274355
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +883,7 @@ GameObject:
   - component: {fileID: 7335939407904303703}
   - component: {fileID: 805819190088198017}
   - component: {fileID: 2616030108161603849}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_FrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8314083496422587044}
   - component: {fileID: 2942614190090111615}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_RearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -882,7 +1039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 587574435371093301}
   - component: {fileID: 283782544101272068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_FrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -955,6 +1112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmokeWhiteSoftTrail
       objectReference: {fileID: 0}
+    - target: {fileID: 130620, guid: 1bff3d95f687092458215d6af5ecc998, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 437806, guid: 1bff3d95f687092458215d6af5ecc998, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.6825539
@@ -1020,6 +1181,10 @@ PrefabInstance:
     - target: {fileID: 130620, guid: 1bff3d95f687092458215d6af5ecc998, type: 3}
       propertyPath: m_Name
       value: SmokeWhiteSoftTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 130620, guid: 1bff3d95f687092458215d6af5ecc998, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 437806, guid: 1bff3d95f687092458215d6af5ecc998, type: 3}
       propertyPath: m_LocalPosition.x

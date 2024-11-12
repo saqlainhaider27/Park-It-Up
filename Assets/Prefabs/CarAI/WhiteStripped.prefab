@@ -159,7 +159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8056895952138251039, guid: 2832abaf3688e874bb54dd2ab70d07a0, type: 3}
       propertyPath: m_Name
-      value: _BaseCar Variant
+      value: WhiteStripped
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

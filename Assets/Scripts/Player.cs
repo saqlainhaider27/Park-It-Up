@@ -11,6 +11,8 @@ public class Player : Singleton<Player> {
     [SerializeField] private float _runSpeed;
     private float _speedTransitionTime = 0.1f; // Time to transition between speeds
 
+    private IInteractable _interactable;
+
     public float Speed {
         get; private set;
     }
@@ -29,6 +31,7 @@ public class Player : Singleton<Player> {
     }
 
     private float _targetSpeed; // New target speed to interpolate toward
+    [SerializeField] private LayerMask _collisionLayer;
 
     private void Awake() {
         _player = GetComponent<CharacterController>();
@@ -37,8 +40,24 @@ public class Player : Singleton<Player> {
     private void Start() {
         InputManager.Instance.OnSprintKeyHold += InputManager_OnSprintKeyHold;
         InputManager.Instance.OnSprintKeyReleased += InputManager_OnSprintKeyReleased;
+        InputManager.Instance.OnInteractKeyPressed += InputManager_OnInteractKeyPressed;
     }
 
+    private void InputManager_OnInteractKeyPressed(object sender, EventArgs e) {
+        Debug.Log("Interaction Performed");
+        _interactable?.Interact();
+    }
+    private void InputManager_OnSprintKeyHold(object sender, EventArgs e) {
+        if (CurrentState == PlayerStates.Walking) {
+            CurrentState = PlayerStates.Running;
+        }
+    }
+
+    private void InputManager_OnSprintKeyReleased(object sender, EventArgs e) {
+        if (CurrentState == PlayerStates.Running) {
+            CurrentState = PlayerStates.Walking;
+        }
+    }
     private void SetTargetSpeed() {
         // Set the target speed based on the current state
         switch (CurrentState) {
@@ -54,17 +73,7 @@ public class Player : Singleton<Player> {
         }
     }
 
-    private void InputManager_OnSprintKeyHold(object sender, EventArgs e) {
-        if (CurrentState == PlayerStates.Walking) {
-            CurrentState = PlayerStates.Running;
-        }
-    }
 
-    private void InputManager_OnSprintKeyReleased(object sender, EventArgs e) {
-        if (CurrentState == PlayerStates.Running) {
-            CurrentState = PlayerStates.Walking;
-        }
-    }
 
     private void Update() {
         // Smoothly transition speed towards the target speed
@@ -79,10 +88,28 @@ public class Player : Singleton<Player> {
             }
             _player.Move(_moveDirection * Speed * Time.deltaTime);
             OrientBody(_moveDirection);
+
         }
         else {
             CurrentState = PlayerStates.Idle;
         }
+
+
+    }
+    private void FixedUpdate() {
+        // Hit a raycast in front of player to check for colliders
+
+        float _maxDistance = 1f;
+        Vector3 _offset = new Vector3(0f, 1f, 0f);
+
+        if (Physics.Raycast(transform.position + _offset, transform.forward, out RaycastHit hit, _maxDistance, _collisionLayer)) {
+            if (hit.collider.TryGetComponent<IInteractable>(out _interactable)) {
+                _interactable.InteractStart();
+                return;
+            }
+        }
+        _interactable?.InteractEnd();
+        _interactable = null;
     }
 
     private void OrientBody(Vector3 _moveDirection) {
