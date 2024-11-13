@@ -44,8 +44,18 @@ public class Player : Singleton<Player> {
     }
 
     private void InputManager_OnInteractKeyPressed(object sender, EventArgs e) {
-        Debug.Log("Interaction Performed");
-        _interactable?.Interact();
+        if (Input.GetKey(KeyCode.E)) {
+            if (CurrentState != PlayerStates.Driving) {
+                CurrentState = PlayerStates.Driving;
+                _interactable?.Interact();
+            }
+            else {
+                // Player trying to get out of the car
+                // Will not work as player is diabled??
+
+            }
+        }
+
     }
     private void InputManager_OnSprintKeyHold(object sender, EventArgs e) {
         if (CurrentState == PlayerStates.Walking) {
@@ -76,6 +86,7 @@ public class Player : Singleton<Player> {
 
 
     private void Update() {
+
         // Smoothly transition speed towards the target speed
         Speed = Mathf.Lerp(Speed, _targetSpeed, Time.deltaTime / _speedTransitionTime);
 
@@ -93,7 +104,6 @@ public class Player : Singleton<Player> {
         else {
             CurrentState = PlayerStates.Idle;
         }
-
 
     }
     private void FixedUpdate() {
@@ -118,4 +128,17 @@ public class Player : Singleton<Player> {
         float _smoothDampAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetAngle, ref _currentVelocity, _smoothTime);
         transform.rotation = Quaternion.Euler(0f, _smoothDampAngle, 0f);
     }
+
+    public void SetTransformPosition(Transform _newTransform) {
+        transform.position = _newTransform.position;
+    }
+
+
+    public void Show() {
+        gameObject.SetActive(true);
+    }
+    public void Hide() {
+        gameObject.SetActive(false);
+    }
+
 }

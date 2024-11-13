@@ -1,27 +1,15 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class CarAI : MonoBehaviour, IInteractable {
+public class CarAI : MonoBehaviour {
 
-    private PrometeoCarController _carController;
-    [SerializeField] private SelectedCarBody _selectedCarBody;
-    [field: SerializeField]
-    public CarAISO CarAISO {
-        get; private set;
-    }
+
     private NavMeshAgent _carAgent;
-    [SerializeField] private bool _testing;
 
     private void Awake() {
-        _carController = GetComponent<PrometeoCarController>();
-        // Diable the car controller and only enable when player is in the car
-        _carController.enabled = false;
+
         _carAgent = GetComponent<NavMeshAgent>();
-        if (_testing) {
-            return;
-        }
         SetDefaultAgentDestination(CarAIController.Instance.DefaultDropLocation);
 
     }
@@ -41,15 +29,5 @@ public class CarAI : MonoBehaviour, IInteractable {
         }
     }
 
-    public void Interact() {
-        Debug.Log("Interact");
-    }
 
-    public void InteractStart() {
-        _selectedCarBody.Show();
-    }
-
-    public void InteractEnd() {
-        _selectedCarBody.Hide();
-    }
 }

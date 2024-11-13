@@ -681,7 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4344942755522870651}
   m_Layer: 7
-  m_Name: CustomerSpawnLocation
+  m_Name: ExitPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,6 +716,7 @@ GameObject:
   - component: {fileID: 1022843523982172369}
   - component: {fileID: 4341688599660793034}
   - component: {fileID: 584968176290028714}
+  - component: {fileID: -1299119726642041513}
   m_Layer: 7
   m_Name: _BaseCar
   m_TagString: Untagged
@@ -827,8 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c900d7efdcd0348babdd8fbac86bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selectedCarBody: {fileID: 2102102364323821907}
-  <CarAISO>k__BackingField: {fileID: 0}
+  _testing: 0
 --- !u!195 &4341688599660793034
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -872,6 +872,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.69, y: 1.15, z: 4.1}
   m_Center: {x: -0.004298985, y: 0.74, z: 0.0057911873}
+--- !u!114 &-1299119726642041513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056895952138251039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96889629a50c0ef439d8004aea720cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _exitPoint: {fileID: 4344942755522870651}
+  _selectedCarBody: {fileID: 2102102364323821907}
+  <CarSO>k__BackingField: {fileID: 0}
 --- !u!1 &8267371932711274355
 GameObject:
   m_ObjectHideFlags: 0

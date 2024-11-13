@@ -95,6 +95,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1299119726642041513, guid: 2832abaf3688e874bb54dd2ab70d07a0, type: 3}
+      propertyPath: <CarSO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 6dba981e081fcb04a8278b0cc5965cef, type: 2}
+    - target: {fileID: -1299119726642041513, guid: 2832abaf3688e874bb54dd2ab70d07a0, type: 3}
+      propertyPath: <CarAISO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 6dba981e081fcb04a8278b0cc5965cef, type: 2}
     - target: {fileID: 456711136825715180, guid: 2832abaf3688e874bb54dd2ab70d07a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

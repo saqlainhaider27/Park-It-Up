@@ -4,7 +4,7 @@ using UnityEngine;
 public class CarAISpawner : MonoBehaviour {
 
     [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private List<CarAI> _carAIList = new List<CarAI>();
+    [SerializeField] private List<Car> _carList = new List<Car>();
     [SerializeField] private float maxSpawnDuration;
     private float spawnCooldown;
 
@@ -23,10 +23,10 @@ public class CarAISpawner : MonoBehaviour {
             return;
         }
         if (spawnCooldown <= 0f) {
-            int randomCarIndex = UnityEngine.Random.Range(0, _carAIList.Count);
-            CarAI _carToGenerate = _carAIList[randomCarIndex];
-            Instantiate(_carToGenerate.CarAISO.carPrefab, _spawnPoint);
-
+            int randomCarIndex = UnityEngine.Random.Range(0, _carList.Count);
+            Car _carToGenerate = _carList[randomCarIndex];
+            GameObject _generatedCar = Instantiate(_carToGenerate.CarSO.carPrefab, _spawnPoint);
+            
             // Reset the cooldown timer
             spawnCooldown = maxSpawnDuration;
         }

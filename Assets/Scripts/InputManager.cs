@@ -16,11 +16,11 @@ public class InputManager : Singleton<InputManager> {
     private void Start() {
         inputActions.Player.Sprint.performed += Sprint_performed;
         inputActions.Player.Sprint.canceled += Sprint_canceled;
-        inputActions.Player.Interact.performed += Interact_performed;
+
+        inputActions.Player.Interact.started += Interact_performed;
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-        Debug.Log("Interaction KeyPressed");
         OnInteractKeyPressed?.Invoke(this,EventArgs.Empty);
     }
 

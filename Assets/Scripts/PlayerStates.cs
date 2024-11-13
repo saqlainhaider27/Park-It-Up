@@ -4,5 +4,6 @@ public enum PlayerStates {
     Idle,
     Walking,
     Running,
-    Interact
+    Interact,
+    Driving
 }
