@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CarAIController : Singleton<CarAIController> {
+public class AIDestinationController : Singleton<AIDestinationController> {
 
     [SerializeField] private DropPoint _dropPoint;
     public Vector3 DefaultDropLocation {
@@ -11,6 +11,8 @@ public class CarAIController : Singleton<CarAIController> {
             _dropPoint.transform.position = value;
         }
     }
+
+
     public void OccupyDropPoint() {
         _dropPoint.IsOccupied = true;
     }

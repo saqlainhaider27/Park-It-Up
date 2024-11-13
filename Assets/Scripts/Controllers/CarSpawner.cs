@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarAISpawner : MonoBehaviour {
+public class CarSpawner : MonoBehaviour {
 
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private List<Car> _carList = new List<Car>();
@@ -19,7 +19,7 @@ public class CarAISpawner : MonoBehaviour {
 
         // If cooldown reaches 0, spawn a new car and reset the cooldown
         // Don't Spawn any cars if drop point occupued
-        if (CarAIController.Instance.GetIsDropPointOccupied()) {
+        if (AIDestinationController.Instance.GetIsDropPointOccupied()) {
             return;
         }
         if (spawnCooldown <= 0f) {

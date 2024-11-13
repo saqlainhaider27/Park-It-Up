@@ -12,7 +12,7 @@ public class CarAI : MonoBehaviour {
     private void Awake() {
 
         _carAgent = GetComponent<NavMeshAgent>();
-        SetDefaultAgentDestination(CarAIController.Instance.DefaultDropLocation);
+        SetDefaultAgentDestination(AIDestinationController.Instance.DefaultDropLocation);
 
     }
 
@@ -26,7 +26,7 @@ public class CarAI : MonoBehaviour {
         // Stop the agent if reached destination and spawn a customer next to it
         if (_carAgent.remainingDistance < 0.1f && !_carAgent.isStopped) {
             _carAgent.isStopped = true;
-            CarAIController.Instance.OccupyDropPoint();
+            AIDestinationController.Instance.OccupyDropPoint();
             OnCarReached?.Invoke(this, EventArgs.Empty);
         }
     }
