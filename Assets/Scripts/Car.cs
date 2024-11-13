@@ -5,7 +5,12 @@ public class Car : MonoBehaviour, IInteractable {
     private CarAI _carAI;
 
     private PrometeoCarController _carController;
-    [SerializeField] private Transform _exitPoint;
+
+    [field: SerializeField]
+    public Transform ExitPoint {
+        get; private set;
+    }
+
     [SerializeField] private SelectedCarBody _selectedCarBody;
 
     [field: SerializeField]
@@ -19,20 +24,22 @@ public class Car : MonoBehaviour, IInteractable {
 
         DisableDriving();
     }
+
     private void Start() {
-        InputManager.Instance.OnInteractKeyPressed += InputManager_OnInteractKeyPressed;
+
+        Player.Instance.OnInteractionEnter += Player_OnInteractionEnter;
+        Player.Instance.OnInteractionExit += Player_OnInteractionExit;
     }
-    private void InputManager_OnInteractKeyPressed(object sender, System.EventArgs e) {
-        // Check is player state is driving?
-        // Enable player as player trying to exit state
-        // Call a function to change the transform of the player to the exit transform
-        // Disable the CarController and enable AI
-        if (Player.Instance.CurrentState != PlayerStates.Driving) {
-            return;
+    private void Player_OnInteractionExit(object sender, Player.OnInteractionEventArgs e) {
+        if (e._interactionObject == (IInteractable)this) {
+            DisableDriving();
         }
-        Player.Instance.Show();
-        DisableDriving();
-        Player.Instance.SetTransformPosition(_exitPoint);
+    }
+
+    private void Player_OnInteractionEnter(object sender, Player.OnInteractionEventArgs e) {
+        if (e._interactionObject == (IInteractable)this) {
+            Interact();
+        }
     }
 
 
@@ -46,8 +53,6 @@ public class Car : MonoBehaviour, IInteractable {
     }
 
     public void Interact() {
-        // Hide Player and change to driving
-        Player.Instance.Hide();
         EnableDriving();
         InteractEnd();
     }

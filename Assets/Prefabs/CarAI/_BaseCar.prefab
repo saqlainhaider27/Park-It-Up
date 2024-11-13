@@ -828,7 +828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c900d7efdcd0348babdd8fbac86bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testing: 0
 --- !u!195 &4341688599660793034
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -884,7 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96889629a50c0ef439d8004aea720cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _exitPoint: {fileID: 4344942755522870651}
+  <ExitPoint>k__BackingField: {fileID: 4344942755522870651}
   _selectedCarBody: {fileID: 2102102364323821907}
   <CarSO>k__BackingField: {fileID: 0}
 --- !u!1 &8267371932711274355

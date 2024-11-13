@@ -1054,7 +1054,7 @@ MonoBehaviour:
   _idleSpeed: 0
   _walkSpeed: 2
   _runSpeed: 6
-  _collisionLayer:
+  _interactionLayer:
     serializedVersion: 2
     m_Bits: 128
 --- !u!143 &2125097757

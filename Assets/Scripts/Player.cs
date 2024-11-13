@@ -13,6 +13,13 @@ public class Player : Singleton<Player> {
 
     private IInteractable _interactable;
 
+    public event EventHandler<OnInteractionEventArgs> OnInteractionEnter;
+    public event EventHandler<OnInteractionEventArgs> OnInteractionExit;
+
+    public class OnInteractionEventArgs : EventArgs {
+        public IInteractable _interactionObject;
+    }
+
     public float Speed {
         get; private set;
     }
@@ -31,7 +38,7 @@ public class Player : Singleton<Player> {
     }
 
     private float _targetSpeed; // New target speed to interpolate toward
-    [SerializeField] private LayerMask _collisionLayer;
+    [SerializeField] private LayerMask _interactionLayer;
 
     private void Awake() {
         _player = GetComponent<CharacterController>();
@@ -44,16 +51,23 @@ public class Player : Singleton<Player> {
     }
 
     private void InputManager_OnInteractKeyPressed(object sender, EventArgs e) {
-        if (Input.GetKey(KeyCode.E)) {
-            if (CurrentState != PlayerStates.Driving) {
-                CurrentState = PlayerStates.Driving;
-                _interactable?.Interact();
-            }
-            else {
-                // Player trying to get out of the car
-                // Will not work as player is diabled??
-
-            }
+        if (_interactable == null) {
+            return;
+        }
+        if (CurrentState != PlayerStates.Driving) {
+            CurrentState = PlayerStates.Driving;
+            OnInteractionEnter?.Invoke(this, new OnInteractionEventArgs {
+                _interactionObject = _interactable
+            });
+            Hide();
+        }
+        else {
+            CurrentState = PlayerStates.Idle;
+            transform.position = ((Car)_interactable).ExitPoint.position;
+            OnInteractionExit?.Invoke(this, new OnInteractionEventArgs {
+                _interactionObject = _interactable
+            });
+            Show();
         }
 
     }
@@ -112,7 +126,7 @@ public class Player : Singleton<Player> {
         float _maxDistance = 1f;
         Vector3 _offset = new Vector3(0f, 1f, 0f);
 
-        if (Physics.Raycast(transform.position + _offset, transform.forward, out RaycastHit hit, _maxDistance, _collisionLayer)) {
+        if (Physics.Raycast(transform.position + _offset, transform.forward, out RaycastHit hit, _maxDistance, _interactionLayer)) {
             if (hit.collider.TryGetComponent<IInteractable>(out _interactable)) {
                 _interactable.InteractStart();
                 return;
@@ -128,11 +142,6 @@ public class Player : Singleton<Player> {
         float _smoothDampAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetAngle, ref _currentVelocity, _smoothTime);
         transform.rotation = Quaternion.Euler(0f, _smoothDampAngle, 0f);
     }
-
-    public void SetTransformPosition(Transform _newTransform) {
-        transform.position = _newTransform.position;
-    }
-
 
     public void Show() {
         gameObject.SetActive(true);
