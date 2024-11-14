@@ -24,6 +24,4 @@ public class CarAI : MonoBehaviour {
             OnCarReached?.Invoke(this, EventArgs.Empty);
         }
     }
-
-
 }

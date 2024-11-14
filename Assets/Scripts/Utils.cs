@@ -15,4 +15,5 @@ public class Utils : MonoBehaviour {
 
         return spawnedObject;
     }
+
 }

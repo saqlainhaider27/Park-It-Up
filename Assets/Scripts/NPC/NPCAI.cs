@@ -1,10 +1,11 @@
-using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class NPCAI : MonoBehaviour {
-    
+
+    public event EventHandler OnNPCReached;
     private NPC _NPC;
     private NavMeshAgent _agent;
     
@@ -22,9 +23,7 @@ public class NPCAI : MonoBehaviour {
         if (_agent.remainingDistance < 0.1f && !_agent.isStopped) {
             _agent.isStopped = true;
             _NPC.CurrentState = NPCStates.Idle;
-            // Is the npc reached entry point hit npc
-            _NPC.Hide();
-
+            OnNPCReached?.Invoke(this, EventArgs.Empty);
         }
     }
 

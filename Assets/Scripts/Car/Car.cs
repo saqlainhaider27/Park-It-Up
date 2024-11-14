@@ -19,15 +19,17 @@ public class Car : MonoBehaviour, IInteractable {
         get; private set;
     }
 
+    private bool npcSpawned = false;
+
     private void Awake() {
         _carController = GetComponent<PrometeoCarController>();
         _carAI = GetComponent<CarAI>();
         Drivable = false;
+        _carAI.enabled = true;
         DisableDriving();
     }
 
     private void Start() {
-
         Player.Instance.OnInteractionEnter += Player_OnInteractionEnter;
         Player.Instance.OnInteractionExit += Player_OnInteractionExit;
 
@@ -35,8 +37,11 @@ public class Car : MonoBehaviour, IInteractable {
     }
 
     private void CarAI_OnCarReached(object sender, System.EventArgs e) {
-        Drivable = true;
-        NPC _generatedNPC = NPCSpawner.Instance.SpawnNPC(ExitPoint.position);
+        if (!npcSpawned) {
+            Drivable = true;
+            npcSpawned = true;
+            NPC _generatedNPC = NPCSpawner.Instance.SpawnNPC(ExitPoint.position);
+        }
     }
 
     private void Player_OnInteractionExit(object sender, Player.OnInteractionEventArgs e) {
@@ -55,17 +60,16 @@ public class Car : MonoBehaviour, IInteractable {
             Interact();
             Player.Instance.Hide();
             Player.Instance.SetTransformPosition(ExitPoint.position);
+            // Also unoccupy the DropPoint
+            AIDestinationController.Instance.UnOccupyDropPoint();
         }
-
     }
-
 
     public void EnableDriving() {
         _carAI.enabled = false;
         _carController.enabled = true;
     }
     public void DisableDriving() {
-        _carAI.enabled = true;
         _carController.enabled = false;
     }
 
