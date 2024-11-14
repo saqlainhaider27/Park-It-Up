@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Car : MonoBehaviour, IInteractable {
 
-    private CarAI _carAI;
+    private CarDriverAI _carAI;
     public bool Drivable {
         get; private set;
     }
-    private PrometeoCarController _carController;
+    private CarController _carController;
 
     [field: SerializeField]
     public Transform ExitPoint {
@@ -22,8 +22,8 @@ public class Car : MonoBehaviour, IInteractable {
     private bool npcSpawned = false;
 
     private void Awake() {
-        _carController = GetComponent<PrometeoCarController>();
-        _carAI = GetComponent<CarAI>();
+        _carController = GetComponent<CarController>();
+        _carAI = GetComponent<CarDriverAI>();
         Drivable = false;
         _carAI.enabled = true;
         DisableDriving();

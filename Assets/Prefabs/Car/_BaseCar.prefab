@@ -712,11 +712,12 @@ GameObject:
   m_Component:
   - component: {fileID: 456711136825715180}
   - component: {fileID: 7127387335355067669}
-  - component: {fileID: 7931519026846046191}
   - component: {fileID: 1022843523982172369}
   - component: {fileID: 4341688599660793034}
   - component: {fileID: 584968176290028714}
   - component: {fileID: -1299119726642041513}
+  - component: {fileID: 8525724512613665998}
+  - component: {fileID: -1358468104088209068}
   m_Layer: 7
   m_Name: _BaseCar
   m_TagString: Untagged
@@ -768,54 +769,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7931519026846046191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8056895952138251039}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0fefceefe666bb4682b272ec8c5bdd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 40
-  maxReverseSpeed: 40
-  accelerationMultiplier: 10
-  maxSteeringAngle: 45
-  steeringSpeed: 1
-  brakeForce: 350
-  decelerationMultiplier: 10
-  handbrakeDriftMultiplier: 10
-  bodyMassCenter: {x: 0, y: 0, z: 0}
-  frontLeftMesh: {fileID: 8267371932711274355}
-  frontLeftCollider: {fileID: 283782544101272068}
-  frontRightMesh: {fileID: 1991594956430026645}
-  frontRightCollider: {fileID: 7381410793701201808}
-  rearLeftMesh: {fileID: 4511183533739295768}
-  rearLeftCollider: {fileID: 2396902277478912490}
-  rearRightMesh: {fileID: 3660260768671923776}
-  rearRightCollider: {fileID: 2942614190090111615}
-  useEffects: 0
-  RLWParticleSystem: {fileID: 0}
-  RRWParticleSystem: {fileID: 0}
-  RLWTireSkid: {fileID: 0}
-  RRWTireSkid: {fileID: 0}
-  useUI: 0
-  carSpeedText: {fileID: 0}
-  useSounds: 0
-  carEngineSound: {fileID: 0}
-  tireScreechSound: {fileID: 0}
-  useTouchControls: 0
-  throttleButton: {fileID: 0}
-  reverseButton: {fileID: 0}
-  turnRightButton: {fileID: 0}
-  turnLeftButton: {fileID: 0}
-  handbrakeButton: {fileID: 0}
-  carSpeed: 0
-  isDrifting: 0
-  isTractionLocked: 0
 --- !u!114 &1022843523982172369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +839,31 @@ MonoBehaviour:
   <ExitPoint>k__BackingField: {fileID: 4344942755522870651}
   _selectedCarBody: {fileID: 2102102364323821907}
   <CarSO>k__BackingField: {fileID: 0}
+--- !u!114 &8525724512613665998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056895952138251039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2a95d6520786b419caf8342805739b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1358468104088209068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056895952138251039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb59b9c1ad3c8e34999f1b2e07b5774f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPositionTranform: {fileID: 0}
 --- !u!1 &8267371932711274355
 GameObject:
   m_ObjectHideFlags: 0

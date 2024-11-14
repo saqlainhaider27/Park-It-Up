@@ -1,8 +1,8 @@
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class CarController : MonoBehaviour {
+public class CarDrive : MonoBehaviour {
 
     #region Fields
     private float speed;
@@ -37,8 +37,7 @@ public class CarController : MonoBehaviour {
             if (speed > 0) {
                 // Braking
                 speed += forwardAmount * brakeSpeed * Time.deltaTime;
-            }
-            else {
+            } else {
                 // Reversing
                 speed += forwardAmount * reverseSpeed * Time.deltaTime;
             }
@@ -71,8 +70,7 @@ public class CarController : MonoBehaviour {
                 turnSpeed = turnAmount * minTurnAmount;
             }
             turnSpeed += turnAmount * turnSpeedAcceleration * Time.deltaTime;
-        }
-        else {
+        } else {
             // Not turning
             if (turnSpeed > 0) {
                 turnSpeed -= turnIdleSlowdown * Time.deltaTime;
@@ -99,7 +97,6 @@ public class CarController : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        speed = Mathf.Clamp(speed, 0f, 20f);
         //if (collision.gameObject.layer == GameHandler.SOLID_OBJECTS_LAYER) {
         //    speed = Mathf.Clamp(speed, 0f, 20f);
         //}
@@ -135,6 +132,5 @@ public class CarController : MonoBehaviour {
         speed = 0f;
         turnSpeed = 0f;
     }
-
 
 }
