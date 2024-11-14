@@ -203,6 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 947299638767164731}
   - component: {fileID: 5830056266005790557}
+  - component: {fileID: 1115123869020476329}
   m_Layer: 0
   m_Name: NPCVisual
   m_TagString: Untagged
@@ -237,7 +238,7 @@ Animator:
   m_GameObject: {fileID: 2125064501052486563}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 50c8fe73844fb0a42bdb72b9873224e6, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27e916496f7f8c342805c1abfb2048ec, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -249,6 +250,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1115123869020476329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125064501052486563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f50c85724821249b67d703ee38a15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _NPC: {fileID: 9081918725929936766}
 --- !u!1 &2275103290390979555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,3 +1247,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6029086391771612468, guid: 19e63dcc72f15274c919017d80bbace2, type: 3}
   m_PrefabInstance: {fileID: 7905018908080828769}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9081918725929936766 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1422346000925906463, guid: 19e63dcc72f15274c919017d80bbace2, type: 3}
+  m_PrefabInstance: {fileID: 7905018908080828769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1b9cce2296d5443b6bc4066b5853d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

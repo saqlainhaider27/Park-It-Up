@@ -12,13 +12,7 @@ public class CarAI : MonoBehaviour {
     private void Awake() {
 
         _carAgent = GetComponent<NavMeshAgent>();
-        SetDefaultAgentDestination(AIDestinationController.Instance.DefaultDropLocation);
-
-    }
-
-    private void SetDefaultAgentDestination(Vector3 _destination) {
-        _carAgent.SetDestination(_destination);
-
+        _carAgent.SetDestination(AIDestinationController.Instance.DefaultDropLocation);
 
     }
     private void Update() {

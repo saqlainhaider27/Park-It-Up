@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class NPC : MonoBehaviour {
@@ -6,4 +7,15 @@ public class NPC : MonoBehaviour {
     public NPCSO NPCSO {
         get; private set;
     }
+    public NPCStates CurrentState {
+        get; set;
+    }
+
+    public void Hide() {
+        gameObject.SetActive(false);
+    }
+    public void Show() {
+        gameObject.SetActive(true);
+    }
+
 }

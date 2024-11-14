@@ -36,6 +36,8 @@ public class Player : Singleton<Player> {
             SetTargetSpeed();
         }
     }
+    private float verticalVelocity = 0f;
+
 
     private float _targetSpeed; // New target speed to interpolate toward
     [SerializeField] private LayerMask _interactionLayer;
@@ -59,15 +61,13 @@ public class Player : Singleton<Player> {
             OnInteractionEnter?.Invoke(this, new OnInteractionEventArgs {
                 _interactionObject = _interactable
             });
-            Hide();
         }
         else {
             CurrentState = PlayerStates.Idle;
-            transform.position = ((Car)_interactable).ExitPoint.position;
             OnInteractionExit?.Invoke(this, new OnInteractionEventArgs {
                 _interactionObject = _interactable
             });
-            Show();
+            
         }
 
     }
@@ -99,7 +99,15 @@ public class Player : Singleton<Player> {
 
 
 
+
     private void Update() {
+        if (!_player.isGrounded) {
+            AddGravity();
+        }
+        else {
+            // Reset vertical velocity to zero if grounded
+            verticalVelocity = 0f;
+        }
 
         // Smoothly transition speed towards the target speed
         Speed = Mathf.Lerp(Speed, _targetSpeed, Time.deltaTime / _speedTransitionTime);
@@ -111,16 +119,23 @@ public class Player : Singleton<Player> {
             if (CurrentState != PlayerStates.Running) {
                 CurrentState = PlayerStates.Walking;
             }
-            _player.Move(_moveDirection * Speed * Time.deltaTime);
+            // Move in the horizontal direction with the calculated speed
+            _player.Move((_moveDirection * Speed + Vector3.up * verticalVelocity) * Time.deltaTime);
             OrientBody(_moveDirection);
-
         }
         else {
             CurrentState = PlayerStates.Idle;
         }
-
     }
+
+    private void AddGravity() {
+        float GRAVITY = -9.81f;
+        verticalVelocity += GRAVITY * Time.deltaTime;
+    }
+
+
     private void FixedUpdate() {
+
         // Hit a raycast in front of player to check for colliders
 
         float _maxDistance = 1f;
@@ -148,6 +163,9 @@ public class Player : Singleton<Player> {
     }
     public void Hide() {
         gameObject.SetActive(false);
+    }
+    public void SetTransformPosition(Vector3 _position) {
+        transform.position = _position;
     }
 
 }
