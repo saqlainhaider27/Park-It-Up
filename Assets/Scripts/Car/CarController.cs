@@ -37,7 +37,13 @@ public class CarController : MonoBehaviour {
         verticalInput = InputManager.Instance.GetInputVector().y;
 
         // Breaking Input
-        isBreaking = InputManager.Instance.GetSpaceTrigger();
+        if (verticalInput == 0) {
+            isBreaking = true;
+        }
+        else {
+            isBreaking = false;
+        }
+        // isBreaking = InputManager.Instance.GetSpaceTrigger();
     }
     private void HandleMotor() {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;

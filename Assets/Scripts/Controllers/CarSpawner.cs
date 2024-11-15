@@ -10,6 +10,7 @@ public class CarSpawner : MonoBehaviour {
     private void Awake() {
         AIDestinationController.Instance.OnDropPointUnOccupuied += AIDestinationController_OnDropPointUnOccupuied;
     }
+    // TODO: Spawn new car when player parks the previous car
     private void AIDestinationController_OnDropPointUnOccupuied(object sender, System.EventArgs e) {
         Car _generatedCar = Utils.SpawnRandomFromList<Car>(_spawnPoint.position, _carList);
     }

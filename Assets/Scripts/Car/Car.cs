@@ -66,11 +66,13 @@ public class Car : MonoBehaviour, IInteractable {
     }
 
     public void EnableDriving() {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         _carAI.enabled = false;
         _carController.enabled = true;
     }
     public void DisableDriving() {
         // Break the car;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         _carController.enabled = false;
 
     }

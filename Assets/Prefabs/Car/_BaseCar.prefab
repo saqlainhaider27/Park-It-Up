@@ -780,6 +780,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c900d7efdcd0348babdd8fbac86bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleDetectionDistance: 3
+  boxCastHalfExtents: {x: 1, y: 0.5, z: 1}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!195 &4341688599660793034
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -850,8 +855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2a95d6520786b419caf8342805739b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motorForce: 500
-  breakForce: 500
+  motorForce: 1000
+  breakForce: 1000
   maxSteerAngle: 45
   frontLeftWheelCollider: {fileID: 283782544101272068}
   frontRightWheelCollider: {fileID: 7381410793701201808}
