@@ -31,7 +31,9 @@ public class InputManager : Singleton<InputManager> {
     private void Sprint_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         OnSprintKeyHold?.Invoke(this, EventArgs.Empty);
     }
-
+    public bool GetSpaceTrigger() {
+        return inputActions.Player.Jump.triggered;   
+    }
     public Vector2 GetInputVector() {
         return inputActions.Player.Move.ReadValue<Vector2>();
     }

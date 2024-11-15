@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Car : MonoBehaviour, IInteractable {
 
-    private CarDriverAI _carAI;
+    private CarAI _carAI;
     public bool Drivable {
         get; private set;
     }
@@ -23,7 +23,7 @@ public class Car : MonoBehaviour, IInteractable {
 
     private void Awake() {
         _carController = GetComponent<CarController>();
-        _carAI = GetComponent<CarDriverAI>();
+        _carAI = GetComponent<CarAI>();
         Drivable = false;
         _carAI.enabled = true;
         DisableDriving();
@@ -70,7 +70,10 @@ public class Car : MonoBehaviour, IInteractable {
         _carController.enabled = true;
     }
     public void DisableDriving() {
+        // Break the car;
+        _carController.ApplyBreaks();
         _carController.enabled = false;
+
     }
 
     public void Interact() {
