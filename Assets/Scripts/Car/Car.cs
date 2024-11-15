@@ -40,7 +40,9 @@ public class Car : MonoBehaviour, IInteractable {
         if (!npcSpawned) {
             Drivable = true;
             npcSpawned = true;
+
             NPC _generatedNPC = NPCSpawner.Instance.SpawnNPC(ExitPoint.position);
+            _generatedNPC.Car = this;
         }
     }
 
@@ -49,6 +51,8 @@ public class Car : MonoBehaviour, IInteractable {
             DisableDriving();
             Player.Instance.Show();
             Player.Instance.SetTransformPosition(ExitPoint.position);
+
+            // Set the position to the parking spot if car exit on parking spot
         }
     }
 
