@@ -71,7 +71,6 @@ public class Car : MonoBehaviour, IInteractable {
     }
     public void DisableDriving() {
         // Break the car;
-        _carController.ApplyBreaks();
         _carController.enabled = false;
 
     }

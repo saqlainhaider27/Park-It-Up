@@ -39,12 +39,6 @@ public class CarController : MonoBehaviour {
         // Breaking Input
         isBreaking = InputManager.Instance.GetSpaceTrigger();
     }
-    public void ApplyBreaks() {
-        isBreaking = true;
-        verticalInput = 0f;
-        horizontalInput = 0f;
-        ApplyBreaking();
-    }
     private void HandleMotor() {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
