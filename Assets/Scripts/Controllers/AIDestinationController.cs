@@ -8,6 +8,8 @@ public class AIDestinationController : Singleton<AIDestinationController> {
     [SerializeField] private GameObject _exitPoint;
     [SerializeField] private GameObject _waitPoint;
     [SerializeField] private GameObject _finalDestinationPoint;
+
+
     public event EventHandler OnDropPointUnOccupuied;
 
     public Vector3 DefaultDropLocation {
@@ -59,15 +61,15 @@ public class AIDestinationController : Singleton<AIDestinationController> {
     }
 
     public void OccupyDropPoint() {
-        _dropPoint.IsOccupied = true;
+        _dropPoint.Occupied = true;
     }
     public void UnOccupyDropPoint() {
-        _dropPoint.IsOccupied = false;
+        _dropPoint.Occupied = false;
         // Droppoint is free spawn a new car
         OnDropPointUnOccupuied?.Invoke(this, EventArgs.Empty);
     }
     public bool GetIsDropPointOccupied() {
-        return _dropPoint.IsOccupied;
+        return _dropPoint.Occupied;
     }
         
 }

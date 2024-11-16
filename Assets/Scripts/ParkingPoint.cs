@@ -1,13 +1,10 @@
 using System;
 using UnityEngine;
 
-public class ParkingSpot : MonoBehaviour {
+public class ParkingPoint : Point {
 
     public event EventHandler OnOccupuied;
     protected Car _occupiedByCar;
-    public bool Occupied {
-        get; private set;
-    }
     private void Awake() {
         Occupied = false;
     }
@@ -24,12 +21,14 @@ public class ParkingSpot : MonoBehaviour {
             _car.transform.rotation = transform.rotation;
             _occupiedByCar = _car;
             Occupied = true;
+            ParkingManager.Instance.AddParkingPointToOccupyList(this);
             OnOccupuied?.Invoke(this, EventArgs.Empty);
         }
     }
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.TryGetComponent<Car>(out Car _car)) {
             Occupied = false;
+            ParkingManager.Instance.RemoveParkingPointFromOccupyList(this);
             _occupiedByCar = null;
         }
     }

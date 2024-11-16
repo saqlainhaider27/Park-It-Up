@@ -47,7 +47,7 @@ public class Car : MonoBehaviour, IInteractable {
                 Drivable = true;
                 npcSpawned = true;
 
-                NPC _generatedNPC = NPCSpawner.Instance.SpawnNPC(ExitPoint.position);
+                NPC _generatedNPC = NPCsManager.Instance.SpawnNPC(ExitPoint.position);
                 _generatedNPC.Car = this;
             }
         }

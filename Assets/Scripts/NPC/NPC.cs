@@ -44,11 +44,14 @@ public class NPC : MonoBehaviour {
         transform.position = AIDestinationController.Instance.BuildingExitPoint;
         // Now make the player wait for the car
         Car.AskForCar();
+        NPCsManager.Instance.AddNPCToWaitingForCarList(this);
         _NPCAI.SetDestination(AIDestinationController.Instance.WaitForCarPoint);
+        
     }
     public void SitInCar() {
         Car.OccupyCar();
         Hide();
+        NPCsManager.Instance.RemoveNPCFromWaitingForCarList(this);
         // Move carAI to the finalDestination Location
         // Turn off the warning Particle in the car
     }

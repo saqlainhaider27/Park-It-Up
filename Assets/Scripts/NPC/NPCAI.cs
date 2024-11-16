@@ -22,7 +22,6 @@ public class NPCAI : MonoBehaviour {
         // Stop the agent if reached destination and spawn a customer next to it
         if (_agent.remainingDistance < 0.1f && !_agent.isStopped) {
             _agent.isStopped = true;
-            Debug.Log("Stopped");
             _NPC.CurrentState = NPCStates.Idle;
             OnNPCReached?.Invoke(this, EventArgs.Empty);
         }
