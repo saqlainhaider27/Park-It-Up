@@ -6,7 +6,8 @@ public class AIDestinationController : Singleton<AIDestinationController> {
     [SerializeField] private DropPoint _dropPoint;
     [SerializeField] private GameObject _entryPoint;
     [SerializeField] private GameObject _exitPoint;
-
+    [SerializeField] private GameObject _waitPoint;
+    [SerializeField] private GameObject _finalDestinationPoint;
     public event EventHandler OnDropPointUnOccupuied;
 
     public Vector3 DefaultDropLocation {
@@ -35,7 +36,23 @@ public class AIDestinationController : Singleton<AIDestinationController> {
         }
 
     }
+    public Vector3 WaitForCarPoint {
+        get {
+            return _waitPoint.transform.position;
+        }
+        private set {
+            _waitPoint.transform.position = value;
+        }
+    }
+    public Vector3 FinalDestination {
+        get {
+            return _finalDestinationPoint.transform.position;
 
+        }
+        private set {
+            _finalDestinationPoint.transform.position = value;
+        }
+    }
 
     private void Start() {
         UnOccupyDropPoint();

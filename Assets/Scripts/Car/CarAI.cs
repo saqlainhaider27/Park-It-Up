@@ -57,4 +57,8 @@ public class CarAI : MonoBehaviour {
         // Optional: visualize the BoxCast in the Scene view
         Debug.DrawRay(boxCastCenter, transform.forward * obstacleDetectionDistance, Color.red);
     }
+    public void UpdateDestination(Vector3 _destination) {
+        _carAgent.isStopped = false;
+        _carAgent.SetDestination(_destination);
+    }
 }

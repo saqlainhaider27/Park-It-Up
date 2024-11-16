@@ -34,7 +34,7 @@ public class NPC : MonoBehaviour {
         Hide();
         // Show after sometime
         // Also change the transform to exit point
-        Invoke(nameof(ShowAtExitPoint), 1f);
+        Invoke(nameof(ShowAtExitPoint), 10f);
 
 
     }
@@ -43,7 +43,16 @@ public class NPC : MonoBehaviour {
         Show();
         transform.position = AIDestinationController.Instance.BuildingExitPoint;
         // Now make the player wait for the car
+        Car.AskForCar();
+        _NPCAI.SetDestination(AIDestinationController.Instance.WaitForCarPoint);
     }
+    public void SitInCar() {
+        Car.OccupyCar();
+        Hide();
+        // Move carAI to the finalDestination Location
+        // Turn off the warning Particle in the car
+    }
+
     public void Hide() {
         gameObject.SetActive(false);
     }
