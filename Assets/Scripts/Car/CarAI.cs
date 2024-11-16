@@ -29,7 +29,7 @@ public class CarAI : MonoBehaviour {
         
         if (_carAgent.remainingDistance < 0.1f && !_carAgent.isStopped) {
             _carAgent.isStopped = true;
-            AIDestinationController.Instance.OccupyDropPoint();
+            Debug.Log("Stopped");
             OnCarReached?.Invoke(this, EventArgs.Empty);
         }
     }

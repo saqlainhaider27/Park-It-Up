@@ -49,7 +49,7 @@ public class NPC : MonoBehaviour {
         
     }
     public void SitInCar() {
-        Car.OccupyCar();
+        Car.GetBackInCar();
         Hide();
         NPCsManager.Instance.RemoveNPCFromWaitingForCarList(this);
         // Move carAI to the finalDestination Location

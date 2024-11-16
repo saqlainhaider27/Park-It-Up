@@ -4,6 +4,7 @@ public class Car : MonoBehaviour, IInteractable {
 
     private CarReachPoints _reachPoint;
 
+    private NPC _generatedNPC;
     private CarAI _carAI;
     public bool IsPlayerDriving {
         get; private set;
@@ -46,14 +47,18 @@ public class Car : MonoBehaviour, IInteractable {
             if (!npcSpawned) {
                 Drivable = true;
                 npcSpawned = true;
-
-                NPC _generatedNPC = NPCsManager.Instance.SpawnNPC(ExitPoint.position);
+                AIDestinationController.Instance.OccupyDropPoint();
+                _generatedNPC = NPCsManager.Instance.SpawnNPC(ExitPoint.position);
                 _generatedNPC.Car = this;
             }
         }
         else {
             // Delete Car
+            DestroySelf();
             // Delete NPC associated with car
+            Destroy(_generatedNPC.gameObject);
+            // Make the spawned cars less to enable more to spawn
+            CarSpawner.Instance.DecrementSpawnedCars();
         }
 
     }
@@ -63,8 +68,6 @@ public class Car : MonoBehaviour, IInteractable {
             DisableDriving();
             Player.Instance.Show();
             Player.Instance.SetTransformPosition(ExitPoint.position);
-
-            // Set the position to the parking spot if car exit on parking spot
         }
     }
 
@@ -94,7 +97,7 @@ public class Car : MonoBehaviour, IInteractable {
         _carController.enabled = false;
 
     }
-    public void OccupyCar() {
+    public void GetBackInCar() {
         Drivable = false;
         _carWarning.Stop();
         _reachPoint = CarReachPoints.Final;
@@ -121,5 +124,7 @@ public class Car : MonoBehaviour, IInteractable {
     public void InteractEnd() {
         _selectedCarBody.Hide();
     }
-
+    public void DestroySelf() {
+        Destroy(this.gameObject);
+    }
 }

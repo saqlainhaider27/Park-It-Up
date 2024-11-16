@@ -3354,7 +3354,7 @@ MonoBehaviour:
   - {fileID: 1709361199301127972, guid: 596fc0d4ddc290a47b491370222b7100, type: 3}
   - {fileID: 4984725035472091702, guid: e303c6a0733f3bd448e188c3787762f1, type: 3}
   - {fileID: 644374090030673312, guid: e1ddc7afe5214f548b7af3e252bdd24b, type: 3}
-  _maxSpawnedCars: 10
+  _maxSpawnedCars: 5
 --- !u!114 &656854503
 MonoBehaviour:
   m_ObjectHideFlags: 0

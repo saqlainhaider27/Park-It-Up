@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarSpawner : MonoBehaviour {
+public class CarSpawner : Singleton<CarSpawner> {
 
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private List<Car> _carList = new List<Car>();
@@ -33,5 +33,8 @@ public class CarSpawner : MonoBehaviour {
         }
         _spawnedCars++;
         Car _generatedCar = Utils.SpawnRandomFromList<Car>(_spawnPoint.position, _carList);
+    }
+    public void DecrementSpawnedCars() {
+        _spawnedCars--;
     }
 }
