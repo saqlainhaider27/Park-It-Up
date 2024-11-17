@@ -4,6 +4,9 @@ using UnityEngine;
 public class ParkingPoint : Point {
 
     public event EventHandler OnOccupuied;
+    [SerializeField] private GameObject _occupied;
+    [SerializeField] private GameObject _upOccupied;
+
     protected Car _occupiedByCar;
     private void Awake() {
         Occupied = false;
@@ -21,13 +24,20 @@ public class ParkingPoint : Point {
             _car.transform.rotation = transform.rotation;
             _occupiedByCar = _car;
             Occupied = true;
-            ParkingManager.Instance.AddParkingPointToOccupyList(this);
+            _occupied.SetActive(true);
+            _upOccupied.SetActive(false);
             OnOccupuied?.Invoke(this, EventArgs.Empty);
+            if (this is PickupPoint) {
+                return;
+            }
+            ParkingManager.Instance.AddParkingPointToOccupyList(this);
         }
     }
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.TryGetComponent<Car>(out Car _car)) {
             Occupied = false;
+            _upOccupied.SetActive(true);
+            _occupied.SetActive(false);
             ParkingManager.Instance.RemoveParkingPointFromOccupyList(this);
             _occupiedByCar = null;
         }

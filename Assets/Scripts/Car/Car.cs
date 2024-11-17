@@ -34,7 +34,7 @@ public class Car : MonoBehaviour, IInteractable {
         _carAI.enabled = true;
         DisableDriving();
     }
-
+      
     private void Start() {
         Player.Instance.OnInteractionEnter += Player_OnInteractionEnter;
         Player.Instance.OnInteractionExit += Player_OnInteractionExit;

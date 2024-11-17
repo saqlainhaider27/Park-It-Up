@@ -23,7 +23,7 @@ public class NPCsManager : Singleton<NPCsManager> {
     }
 
     public List<NPC> GetNPCsWaitingForCarList() {
-        return _spawnedNPCs;
+        return _NPCsWaitingForCar;
     }
     public List<NPC> GetSpawnedNPCs() { 
         return _spawnedNPCs; 

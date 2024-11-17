@@ -13,6 +13,7 @@ public class CarAI : MonoBehaviour {
     [SerializeField] private float obstacleDetectionDistance = 2f; // Distance to detect obstacles in front
     [SerializeField] private Vector3 boxCastHalfExtents = new Vector3(1f, 0.5f, 1f); // Size of the box in each direction
     [SerializeField] private LayerMask obstacleLayer; // Layer of obstacles
+    private Vector3 _offset = new Vector3(0f,1f,0f);
 
     private void Awake() {
         _carAgent = GetComponent<NavMeshAgent>();
@@ -22,14 +23,9 @@ public class CarAI : MonoBehaviour {
     private void Update() {
         // Check for obstacles in front of the car
         DetectObstacle();
-
-        // Check if car reached the destination
-        // TODO:
-        // Check which destination reached and perform task accordingly
         
         if (_carAgent.remainingDistance < 0.1f && !_carAgent.isStopped) {
             _carAgent.isStopped = true;
-            Debug.Log("Stopped");
             OnCarReached?.Invoke(this, EventArgs.Empty);
         }
     }
@@ -39,7 +35,7 @@ public class CarAI : MonoBehaviour {
         Vector3 boxCastCenter = transform.position + transform.forward * obstacleDetectionDistance / 2;
 
         // Perform the BoxCast
-        if (Physics.BoxCast(transform.position, boxCastHalfExtents, transform.forward, out RaycastHit hit, transform.rotation, obstacleDetectionDistance, obstacleLayer)) {
+        if (Physics.BoxCast(transform.position + _offset, boxCastHalfExtents, transform.forward, out RaycastHit hit, transform.rotation, obstacleDetectionDistance, obstacleLayer)) {
             // Stop the car if an obstacle is detected
             if (!_carAgent.isStopped) {
                 _carAgent.isStopped = true;
@@ -55,7 +51,7 @@ public class CarAI : MonoBehaviour {
         }
 
         // Optional: visualize the BoxCast in the Scene view
-        Debug.DrawRay(boxCastCenter, transform.forward * obstacleDetectionDistance, Color.red);
+        Debug.DrawRay(boxCastCenter + _offset, transform.forward * obstacleDetectionDistance, Color.red);
     }
     public void UpdateDestination(Vector3 _destination) {
         _carAgent.isStopped = false;

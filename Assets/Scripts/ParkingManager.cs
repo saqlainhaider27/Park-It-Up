@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class ParkingManager : Singleton<ParkingManager> {
 
     public event EventHandler OnParkingPointOccupied;
-    public event EventHandler OnParkingPointUnoccupied;
+    //public event EventHandler OnParkingPointUnoccupied;
 
     private List<ParkingPoint> _occupiedParkingPoint = new List<ParkingPoint>();
 

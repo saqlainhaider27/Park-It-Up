@@ -6,9 +6,9 @@ public class AIDestinationController : Singleton<AIDestinationController> {
     [SerializeField] private DropPoint _dropPoint;
     [SerializeField] private GameObject _entryPoint;
     [SerializeField] private GameObject _exitPoint;
-    [SerializeField] private GameObject _waitPoint;
+    [SerializeField] private GameObject _waitPoint;                      
     [SerializeField] private GameObject _finalDestinationPoint;
-
+    
 
     public event EventHandler OnDropPointUnOccupuied;
 
