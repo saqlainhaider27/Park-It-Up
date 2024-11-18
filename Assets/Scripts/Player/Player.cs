@@ -15,7 +15,12 @@ public class Player : Singleton<Player> {
 
     public event EventHandler<OnInteractionEventArgs> OnInteractionEnter;
     public event EventHandler<OnInteractionEventArgs> OnInteractionExit;
-
+    
+    public event EventHandler<OnPlayerMoveEventArgs> OnPlayerMove;
+    public class OnPlayerMoveEventArgs : EventArgs {
+        public Vector3 _position;
+        public float _duration;
+    }
     public class OnInteractionEventArgs : EventArgs {
         public IInteractable _interactionObject;
     }
@@ -90,15 +95,20 @@ public class Player : Singleton<Player> {
             break;
             case PlayerStates.Walking:
             _targetSpeed = _walkSpeed;
+            OnPlayerMove?.Invoke(this, new OnPlayerMoveEventArgs {
+                _position = this.transform.position,
+                _duration = 0.3f
+            });
             break;
             case PlayerStates.Running:
+            OnPlayerMove?.Invoke(this, new OnPlayerMoveEventArgs {
+                _position = this.transform.position,
+                _duration = 0.1f
+            });
             _targetSpeed = _runSpeed;
             break;
         }
     }
-
-
-
 
     private void Update() {
         if (!_player.isGrounded) {

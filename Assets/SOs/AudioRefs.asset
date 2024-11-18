@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: AudioRefs
   m_EditorClassIdentifier: 
   _carIdle:
-  - {fileID: 8300000, guid: 3c1c130f6e1be75418d305f8e478e0f0, type: 3}
+  - {fileID: 8300000, guid: 2d4a8d45fbda47744a3a4789565d81f3, type: 3}
   _carDrive:
-  - {fileID: 8300000, guid: a2433afdf39a6f842a45e18593605af0, type: 3}
+  - {fileID: 8300000, guid: 7e7b0c25fa3a1bf4aa9f5e3ba907f49d, type: 3}
+  _footSteps:
+  - {fileID: 8300000, guid: 993026c7bbfde1646a89d5d0ed59add5, type: 3}
+  - {fileID: 8300000, guid: 65c29a8187d84744d80ce1f56076fb4d, type: 3}
+  - {fileID: 8300000, guid: 607ec888b36ce054d8f8da3e6008161e, type: 3}
+  - {fileID: 8300000, guid: bfb345714145da34bb59369fa2cc6541, type: 3}
+  - {fileID: 8300000, guid: ad71708d68b064e45a155ede55f907e6, type: 3}
+  - {fileID: 8300000, guid: 93e953a18ccb3ce46ac7171579c5218b, type: 3}

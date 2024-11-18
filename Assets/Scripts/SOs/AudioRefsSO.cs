@@ -5,4 +5,5 @@ public class AudioRefsSO : ScriptableObject {
 
     public AudioClip[] _carIdle;
     public AudioClip[] _carDrive;
+    public AudioClip[] _footSteps;
 }
