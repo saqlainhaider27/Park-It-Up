@@ -67,7 +67,8 @@ public class Car : MonoBehaviour, IInteractable {
         if (e._interactionObject == (IInteractable)this) {
             DisableDriving();
             Player.Instance.Show();
-            Player.Instance.SetTransformPosition(ExitPoint.position);
+            Player.Instance.transform.position = ExitPoint.position;
+            Debug.Log("Set Transform");
         }
     }
 
@@ -78,7 +79,7 @@ public class Car : MonoBehaviour, IInteractable {
         if (e._interactionObject == (IInteractable)this) {
             Interact();
             Player.Instance.Hide();
-            Player.Instance.SetTransformPosition(ExitPoint.position);
+            
             // Also unoccupy the DropPoint
             AIDestinationController.Instance.UnOccupyDropPoint();
         }
