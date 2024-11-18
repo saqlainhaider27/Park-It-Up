@@ -19,7 +19,6 @@ public class Player : Singleton<Player> {
     public event EventHandler<OnPlayerMoveEventArgs> OnPlayerMove;
     public class OnPlayerMoveEventArgs : EventArgs {
         public Vector3 _position;
-        public float _duration;
     }
     public class OnInteractionEventArgs : EventArgs {
         public IInteractable _interactionObject;
@@ -46,6 +45,7 @@ public class Player : Singleton<Player> {
 
     private float _targetSpeed; // New target speed to interpolate toward
     [SerializeField] private LayerMask _interactionLayer;
+    private float _lastMoveEventTime;
 
     private void Awake() {
         _player = GetComponent<CharacterController>();
@@ -94,19 +94,25 @@ public class Player : Singleton<Player> {
             _targetSpeed = _idleSpeed;
             break;
             case PlayerStates.Walking:
+            TryInvokePlayerMoveEvent(0.5f);
+
             _targetSpeed = _walkSpeed;
-            OnPlayerMove?.Invoke(this, new OnPlayerMoveEventArgs {
-                _position = this.transform.position,
-                _duration = 0.3f
-            });
+
             break;
             case PlayerStates.Running:
-            OnPlayerMove?.Invoke(this, new OnPlayerMoveEventArgs {
-                _position = this.transform.position,
-                _duration = 0.1f
-            });
+            TryInvokePlayerMoveEvent(0.3f);
             _targetSpeed = _runSpeed;
             break;
+        }
+    }
+    private void TryInvokePlayerMoveEvent(float _moveEventCooldown) {
+        float currentTime = Time.time;
+        if (currentTime - _lastMoveEventTime >= _moveEventCooldown) {
+            _lastMoveEventTime = currentTime;
+
+            OnPlayerMove?.Invoke(this, new OnPlayerMoveEventArgs {
+                _position = this.transform.position,
+            });
         }
     }
 
@@ -128,6 +134,9 @@ public class Player : Singleton<Player> {
         if (_moveDirection != Vector3.zero) {
             if (CurrentState != PlayerStates.Running) {
                 CurrentState = PlayerStates.Walking;
+            }
+            else {
+                CurrentState = PlayerStates.Running;
             }
             // Move in the horizontal direction with the calculated speed
             _player.Move((_moveDirection * Speed + Vector3.up * verticalVelocity) * Time.deltaTime);
