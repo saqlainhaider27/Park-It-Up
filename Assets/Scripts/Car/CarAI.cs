@@ -17,7 +17,7 @@ public class CarAI : MonoBehaviour {
 
     private void Awake() {
         _carAgent = GetComponent<NavMeshAgent>();
-        _carAgent.SetDestination(AIDestinationController.Instance.DefaultDropLocation);
+        UpdateDestination(AIDestinationController.Instance.DefaultDropLocation);
     }
 
     private void Update() {
@@ -54,6 +54,7 @@ public class CarAI : MonoBehaviour {
         Debug.DrawRay(boxCastCenter + _offset, transform.forward * obstacleDetectionDistance, Color.red);
     }
     public void UpdateDestination(Vector3 _destination) {
+        GetComponent<Car>().CurrentState = CarStates.Drive;
         _carAgent.isStopped = false;
         _carAgent.SetDestination(_destination);
     }

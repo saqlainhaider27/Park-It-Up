@@ -1,6 +1,46 @@
+using System;
 using UnityEngine;
 
 public class Car : MonoBehaviour, IInteractable {
+
+    public event EventHandler<OnIdleEventArgs> OnIdle;
+    public event EventHandler<OnDriveEventArgs> OnDrive;
+    public event EventHandler<OnOffEventArgs> OnOff;
+    public class OnIdleEventArgs : EventArgs {
+        public Car _car;
+    }
+    public class OnDriveEventArgs : EventArgs {
+        public Car _car;
+    }
+    public class OnOffEventArgs : EventArgs {
+        public Car _car;
+    }
+    public CarStates _currentState;
+    public CarStates CurrentState {
+        get {
+            return _currentState;
+        }
+        set {
+            _currentState = value;
+            switch (CurrentState) {
+                case CarStates.Idle:
+                OnIdle?.Invoke(this, new OnIdleEventArgs {
+                        _car = this
+                });
+                break;
+                case CarStates.Drive:
+                OnDrive?.Invoke(this, new OnDriveEventArgs {
+                    _car = this
+                });
+                break;
+                case CarStates.Off:
+                OnOff?.Invoke(this, new OnOffEventArgs{
+                    _car = this
+                });
+                break;
+            }
+        }
+    }
 
     private CarReachPoints _reachPoint;
 
@@ -43,6 +83,7 @@ public class Car : MonoBehaviour, IInteractable {
     }
 
     private void CarAI_OnCarReached(object sender, System.EventArgs e) {
+        CurrentState = CarStates.Idle;
         if (_reachPoint == CarReachPoints.Drop) {
             if (!npcSpawned) {
                 Drivable = true;
@@ -53,12 +94,14 @@ public class Car : MonoBehaviour, IInteractable {
             }
         }
         else {
+            // Make the spawned cars less to enable more to spawn
+            CarSpawner.Instance.DecrementSpawnedCars(this);
             // Delete Car
             DestroySelf();
             // Delete NPC associated with car
             Destroy(_generatedNPC.gameObject);
-            // Make the spawned cars less to enable more to spawn
-            CarSpawner.Instance.DecrementSpawnedCars();
+
+
         }
 
     }
@@ -68,7 +111,6 @@ public class Car : MonoBehaviour, IInteractable {
             DisableDriving();
             Player.Instance.Show();
             Player.Instance.transform.position = ExitPoint.position;
-            Debug.Log("Set Transform");
         }
     }
 

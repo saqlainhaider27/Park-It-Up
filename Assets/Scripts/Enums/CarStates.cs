@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class CarStates
-{
-    
+public enum CarStates {
+    Idle,
+    Drive,
+    Off
 }

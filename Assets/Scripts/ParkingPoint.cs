@@ -24,8 +24,10 @@ public class ParkingPoint : Point {
             _car.transform.rotation = transform.rotation;
             _occupiedByCar = _car;
             Occupied = true;
+            _car.CurrentState = CarStates.Off;
             _occupied.SetActive(true);
             _upOccupied.SetActive(false);
+
             OnOccupuied?.Invoke(this, EventArgs.Empty);
             if (this is PickupPoint) {
                 return;

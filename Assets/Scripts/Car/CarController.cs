@@ -39,9 +39,17 @@ public class CarController : MonoBehaviour {
         // Breaking Input
         if (verticalInput == 0) {
             isBreaking = true;
+            
+            if (GetComponent<Car>().CurrentState != CarStates.Idle) {
+                GetComponent<Car>().CurrentState = CarStates.Idle;
+            }
         }
         else {
             isBreaking = false;
+            if (GetComponent<Car>().CurrentState != CarStates.Drive) {
+                GetComponent<Car>().CurrentState = CarStates.Drive;
+            }
+            
         }
         // isBreaking = InputManager.Instance.GetSpaceTrigger();
     }
