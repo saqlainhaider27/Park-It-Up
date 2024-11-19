@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 
 public class Car : MonoBehaviour, IInteractable {
-
     public event EventHandler<OnIdleEventArgs> OnIdle;
     public event EventHandler<OnDriveEventArgs> OnDrive;
     public event EventHandler<OnOffEventArgs> OnOff;
@@ -64,7 +63,7 @@ public class Car : MonoBehaviour, IInteractable {
     public CarSO CarSO {
         get; private set;
     }
-    [SerializeField] public ParticleSystem _carWarning;
+    [SerializeField] private ParticleSystem _carWarning;
     private bool npcSpawned = false;
 
     private void Awake() {

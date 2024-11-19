@@ -37,8 +37,6 @@ public class AudioManager : Singleton<AudioManager> {
         _NPCAS.Stop();
     }
 
-
-
     private void PickupPoint_OnCorrectCar(object sender, EventArgs e) {
         _scoreAS.Play();
     }
@@ -51,14 +49,13 @@ public class AudioManager : Singleton<AudioManager> {
         e._car.OnIdle -= Car_OnIdle;
         e._car.OnDrive -= Car_OnDrive;
         e._car.OnOff -= Car_OnOff;
-
         StopCarSound(e._car);
     }
 
     private void CarSpawner_OnCarSpawned(object sender, CarSpawner.OnCarSpawnedEventArgs e) {
         e._car.OnIdle += Car_OnIdle;
         e._car.OnDrive += Car_OnDrive;
-        e._car.OnOff += Car_OnOff;
+        e._car.OnOff += Car_OnOff;   
     }
 
     private void Car_OnOff(object sender, Car.OnOffEventArgs e) {
@@ -72,7 +69,6 @@ public class AudioManager : Singleton<AudioManager> {
     private void Car_OnIdle(object sender, Car.OnIdleEventArgs e) {
         PlayCarLoopingSound(e._car, _audioClipsRefsSO._carIdle);
     }
-
     private void PlayCarLoopingSound(Car _car, AudioClip[] _audioClips) {
         AudioSource audioSource = GetCarAudioSource(_car);
         if (audioSource.isPlaying) {
