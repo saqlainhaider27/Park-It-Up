@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : Singleton<UIController> {
+
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private Menu _pauseMenu;
     [SerializeField] private Menu _UIBlur;
