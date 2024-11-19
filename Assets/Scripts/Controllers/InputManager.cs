@@ -9,6 +9,8 @@ public class InputManager : Singleton<InputManager> {
     public event EventHandler OnSprintKeyReleased;
 
     public event EventHandler OnInteractKeyPressed;
+    public event EventHandler OnEscapeKeyPressed;
+
     private void Awake() {
         inputActions = new InputSystem_Actions();
     }
@@ -18,6 +20,12 @@ public class InputManager : Singleton<InputManager> {
         inputActions.Player.Sprint.canceled += Sprint_canceled;
 
         inputActions.Player.Interact.started += Interact_performed;
+        inputActions.Player.Escape.started += Escape_started;
+
+    }
+
+    private void Escape_started(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        OnEscapeKeyPressed?.Invoke(this, EventArgs.Empty);
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
