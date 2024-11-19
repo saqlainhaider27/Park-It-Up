@@ -1,9 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupPoint : ParkingPoint{
 
+    public static PickupPoint _instance;
+    public static PickupPoint Instance { get { return _instance; } }
 
+    public event EventHandler OnCorrectCar;
+
+    private void Awake() {
+        if (_instance != this && _instance != null) {
+            Destroy(this.gameObject);
+        }
+        else {
+            _instance = this;
+        }
+    }
     private void Start() {
         OnOccupuied += PickupPoint_OnOccupuied;
     }
@@ -21,6 +34,7 @@ public class PickupPoint : ParkingPoint{
         foreach (NPC _NPC in _waitingForCarList) {
             if (_NPC.Car == _occupiedByCar) {
                 _NPC.SitInCar();
+                OnCorrectCar?.Invoke(this, EventArgs.Empty);
                 _occupiedByCar = null;
                 break;
             }

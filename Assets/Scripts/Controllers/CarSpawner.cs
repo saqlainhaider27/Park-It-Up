@@ -41,7 +41,6 @@ public class CarSpawner : Singleton<CarSpawner> {
         float _resetCooldown = 1f;
         _spawnedCars++;
         Car _generatedCar = Utils.SpawnRandomFromList<Car>(_spawnPoint.position, _carList);
-        Debug.Log("Spawned");
         OnCarSpawned?.Invoke(this, new OnCarSpawnedEventArgs {
             _car = _generatedCar
         });

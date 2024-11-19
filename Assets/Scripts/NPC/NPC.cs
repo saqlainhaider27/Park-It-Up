@@ -5,6 +5,16 @@ public class NPC : MonoBehaviour {
 
     private BuildingPoints _reachedBuildingPoint = BuildingPoints.Entry;
 
+    public event EventHandler<OnNPCWalkingEventArgs> OnNPCWalking;
+    public event EventHandler<OnNPCIdleEventArgs> OnNPCIdle;
+    public class OnNPCIdleEventArgs : EventArgs {
+        public NPC _NPC;
+    }
+    public class OnNPCWalkingEventArgs : EventArgs {
+        public NPC _NPC;
+    }
+
+
     private NPCAI _NPCAI;
 
     public Car Car {
@@ -15,8 +25,26 @@ public class NPC : MonoBehaviour {
     public NPCSO NPCSO {
         get; private set;
     }
+    private NPCStates _currentState;
     public NPCStates CurrentState {
-        get; set;
+        get {
+            return _currentState;
+        }
+        set {
+            _currentState = value;
+            switch (CurrentState) {
+                case NPCStates.Idle:
+                OnNPCIdle?.Invoke(this, new OnNPCIdleEventArgs {
+                    _NPC = this
+                });
+                break;
+                case NPCStates.Walking:
+                OnNPCWalking?.Invoke(this, new OnNPCWalkingEventArgs {
+                    _NPC = this
+                });
+                break;
+            }
+        }
     }
     private void Awake() {
         _NPCAI = GetComponent<NPCAI>();
