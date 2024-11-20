@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +10,10 @@ public class UIController : Singleton<UIController> {
     [SerializeField] private Menu _pauseMenu;
     [SerializeField] private Menu _UIBlur;
 
+    [SerializeField] private Button _pauseButton;
+
+    public event EventHandler OnHomeButtonPressed;
+
     private void Start() {
 
         ScoreController.Instance.OnScoreChanged += ScoreController_OnScoreChanged;
@@ -17,7 +21,7 @@ public class UIController : Singleton<UIController> {
     }
 
     private void InputActions_OnEscapeKeyPressed(object sender, EventArgs e) {
-        TogglePause();
+        _pauseButton.onClick.Invoke();        
     }
 
     public void TogglePause() {
@@ -46,8 +50,22 @@ public class UIController : Singleton<UIController> {
         _pauseMenu.HideAfterDelay(1f);
 
     }
+    public void Home() {
+        Time.timeScale = 1f;
+        OnHomeButtonPressed?.Invoke(this, EventArgs.Empty);
+    }
 
+    public void Quit() {
+#if UNITY_EDITOR
+        // Stop playing the scene in the editor.
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // Quit the application.
+        Application.Quit();
+#endif
+    }
     private void ScoreController_OnScoreChanged(object sender, EventArgs e) {
         _scoreText.text = ScoreController.Instance.Score.ToString();
     }
+
 }

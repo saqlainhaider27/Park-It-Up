@@ -10,6 +10,7 @@ public class ScoreController : Singleton<ScoreController> {
     }
     private void Start() {
         PickupPoint.Instance.OnCorrectCar += PickupPoint_OnCorrectCar;
+
     }
 
     private void PickupPoint_OnCorrectCar(object sender, EventArgs e) {
